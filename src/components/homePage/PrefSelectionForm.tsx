@@ -6,16 +6,17 @@ import { Checkbox } from "../shared/Checkbox";
 export const PrefSelectionForm: FC<{}> = () => {
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([1]);
 
-  const prefectures: Prefecture[] = [
-    {
-      prefCode: 1,
-      prefName: "北海道",
-    },
-    {
-      prefCode: 2,
-      prefName: "青森",
-    },
-  ];
+  const [prefectures, setPrefectures] = useState([] as Prefecture[]);
+  // const prefectures: Prefecture[] = [
+  //   {
+  //     prefCode: 1,
+  //     prefName: "北海道",
+  //   },
+  //   {
+  //     prefCode: 2,
+  //     prefName: "青森",
+  //   },
+  // ];
 
   useEffect(() => {
     const fetchPrefectures = async () => {
@@ -26,9 +27,12 @@ export const PrefSelectionForm: FC<{}> = () => {
         .catch((error) => {
           throw new Error(error.message);
         });
-      console.log(response.data.result);
+      const prefectures = response.data.result;
+      return prefectures;
     };
-    fetchPrefectures();
+    fetchPrefectures().then((prefectures) =>
+      setPrefectures(prefectures as Prefecture[])
+    );
   }, []);
 
   const handleClick = useCallback((e: ChangeEvent<HTMLInputElement>) => {
