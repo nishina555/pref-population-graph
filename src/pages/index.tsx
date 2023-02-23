@@ -4,6 +4,7 @@
 // import styles from '@/styles/Home.module.css'
 
 // const inter = Inter({ subsets: ['latin'] })
+import { css } from "@emotion/react";
 
 export default function Home() {
   return (
@@ -14,7 +15,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head> */}
-      <main>Hi</main>
+      <main>
+        <h1 css={helloStyle}>Hello</h1>
+      </main>
     </>
   );
 }
+
+const helloStyle = css({
+  color: "red",
+});
