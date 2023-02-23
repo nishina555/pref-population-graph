@@ -4,7 +4,7 @@ import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import { Checkbox } from "../shared/Checkbox";
 
 export const PrefSelectionForm: FC<{}> = () => {
-  const [checkedPrefCodes, setCheckedPrefCodes] = useState([1]);
+  const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
 
   const [prefectures, setPrefectures] = useState([] as Prefecture[]);
   // const prefectures: Prefecture[] = [
@@ -35,20 +35,20 @@ export const PrefSelectionForm: FC<{}> = () => {
     );
   }, []);
 
-  const handleClick = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  // FIXME: useCallbackで囲むとstate更新がうまくいかない
+  const handleClick = (e: ChangeEvent<HTMLInputElement>) => {
     let code = Number(e.target.value);
     if (e.target.checked === true) {
       setCheckedPrefCodes([...checkedPrefCodes, code]);
     } else {
-      let newCheckedPrefCodes = checkedPrefCodes.filter((id) => id !== code);
-      setCheckedPrefCodes(newCheckedPrefCodes);
+      setCheckedPrefCodes(checkedPrefCodes.filter((id) => id !== code));
     }
-  }, []);
+  };
 
   return (
     <>
       <div>都道府県</div>
+      <div>{checkedPrefCodes}</div>
       {prefectures.map((prefecture: Prefecture) => (
         <Checkbox
           key={prefecture.prefCode.toString()}
