@@ -1,5 +1,6 @@
 import { Prefecture } from "@/types/state/prefecture";
-import { ChangeEvent, FC, useCallback, useState } from "react";
+import axios from "axios";
+import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import { Checkbox } from "../shared/Checkbox";
 
 export const PrefSelectionForm: FC<{}> = () => {
@@ -15,6 +16,20 @@ export const PrefSelectionForm: FC<{}> = () => {
       prefName: "青森",
     },
   ];
+
+  useEffect(() => {
+    const fetchPrefectures = async () => {
+      const response = await axios
+        .get(`${process.env.NEXT_PUBLIC_HOST}/api/v1/prefectures`, {
+          headers: { "X-API-KEY": `${process.env.NEXT_PUBLIC_API_KEY}` },
+        })
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+      console.log(response.data.result);
+    };
+    fetchPrefectures();
+  }, []);
 
   const handleClick = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
