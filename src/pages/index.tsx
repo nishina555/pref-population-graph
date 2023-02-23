@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { css } from "@emotion/react";
+// import { css } from "@emotion/react";
 import { PrefSelectionForm } from "@/components/homePage/PrefSelectionForm";
 import { PopulationView } from "@/components/homePage/PopulationView";
 
@@ -9,13 +9,13 @@ const Home: NextPage = () => {
       <div>Title</div>
       <PrefSelectionForm />
       <PopulationView />
-      <h1 css={helloStyle}>Hello</h1>
+      {/* <h1 css={helloStyle}>Hello</h1> */}
     </div>
   );
 };
 
-const helloStyle = css({
-  color: "red",
-});
+// const helloStyle = css({
+//   color: "red",
+// });
 
 export default Home;
