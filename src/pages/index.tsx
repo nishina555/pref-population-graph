@@ -1,14 +1,14 @@
 import type { NextPage } from "next";
 // import { css } from "@emotion/react";
-import { PrefSelectionForm } from "@/components/homePage/PrefSelectionForm";
-import { PopulationView } from "@/components/homePage/PopulationView";
+import { PrefSelectionFormContainer } from "@/components/homePage/PrefSelectionFormContainer";
+import { PopulationViewContainer } from "@/components/homePage/PopulationViewContainer";
 
 const Home: NextPage = () => {
   return (
     <div>
       <div>Title</div>
-      <PrefSelectionForm />
-      <PopulationView />
+      <PrefSelectionFormContainer />
+      <PopulationViewContainer />
       {/* <h1 css={helloStyle}>Hello</h1> */}
     </div>
   );
