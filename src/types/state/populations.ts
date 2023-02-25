@@ -1,6 +1,6 @@
 export type PopulationEntity = {
   id: number;
-  populations: Population[];
+  records: Population[];
 };
 
 export type Population = {
