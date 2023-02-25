@@ -26,17 +26,19 @@ export const PrefSelectionForm: FC<{}> = () => {
     dispatch(getPrefectures());
   }, [dispatch]);
 
-  // FIXME: useCallbackで囲むとstate更新がうまくいかない
-  const handleClick = (e: ChangeEvent<HTMLInputElement>) => {
-    let code = Number(e.target.value);
-    if (e.target.checked === true) {
-      setCheckedPrefCodes([...checkedPrefCodes, code]);
-      dispatch(getPopulationHistory(code));
-    } else {
-      setCheckedPrefCodes(checkedPrefCodes.filter((id) => id !== code));
-      dispatch(removePolulationHistory(code));
-    }
-  };
+  const handleClick = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      let code = Number(e.target.value);
+      if (e.target.checked === true) {
+        setCheckedPrefCodes([...checkedPrefCodes, code]);
+        dispatch(getPopulationHistory(code));
+      } else {
+        setCheckedPrefCodes(checkedPrefCodes.filter((id) => id !== code));
+        dispatch(removePolulationHistory(code));
+      }
+    },
+    [checkedPrefCodes]
+  );
 
   return (
     <>
