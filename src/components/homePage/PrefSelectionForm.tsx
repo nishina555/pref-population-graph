@@ -1,4 +1,4 @@
-import { Prefecture } from "@/types/state/prefecture";
+import { PrefectureEntity } from "@/types/state/prefectures";
 import axios from "axios";
 import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import { Checkbox } from "../shared/Checkbox";
@@ -6,8 +6,8 @@ import { Checkbox } from "../shared/Checkbox";
 export const PrefSelectionForm: FC<{}> = () => {
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
 
-  const [prefectures, setPrefectures] = useState([] as Prefecture[]);
-  // const prefectures: Prefecture[] = [
+  const [prefectures, setPrefectures] = useState([] as PrefectureEntity[]);
+  // const prefectures: PrefectureEntity[] = [
   //   {
   //     prefCode: 1,
   //     prefName: "北海道",
@@ -31,7 +31,7 @@ export const PrefSelectionForm: FC<{}> = () => {
       return prefectures;
     };
     fetchPrefectures().then((prefectures) =>
-      setPrefectures(prefectures as Prefecture[])
+      setPrefectures(prefectures as PrefectureEntity[])
     );
   }, []);
 
@@ -49,7 +49,7 @@ export const PrefSelectionForm: FC<{}> = () => {
     <>
       <div>都道府県</div>
       <div>{checkedPrefCodes}</div>
-      {prefectures.map((prefecture: Prefecture) => (
+      {prefectures.map((prefecture: PrefectureEntity) => (
         <Checkbox
           key={prefecture.prefCode.toString()}
           code={prefecture.prefCode}
