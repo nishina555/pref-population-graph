@@ -1,25 +1,31 @@
+import {
+  buildEntities,
+  convertResponseToEntities,
+} from "@/lib/entitiesBuilder";
 import { Entities } from "@/types/state/base";
-import { PrefectureEntity } from "@/types/state/prefectures";
+import { Prefecture, PrefectureEntity } from "@/types/state/prefectures";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: Entities<PrefectureEntity> = {
-  allIds: [1, 2],
-  byId: {
-    1: {
-      prefCode: 1,
-      prefName: "北海道",
-    },
-    2: {
-      prefCode: 2,
-      prefName: "青森",
-    },
-  },
+  allIds: [],
+  byId: {},
 };
 
 const prefecturesSlice = createSlice({
   name: "prefectures",
   initialState,
-  reducers: {},
+  reducers: {
+    setInitPrefectures(state, action) {
+      const prefectureEntities = convertResponseToEntities(
+        action.payload as Prefecture[]
+      );
+      const { allIds, byId } =
+        buildEntities<PrefectureEntity>(prefectureEntities);
+      state.allIds = allIds;
+      state.byId = byId;
+    },
+  },
 });
 
+export const { setInitPrefectures } = prefecturesSlice.actions;
 export default prefecturesSlice.reducer;

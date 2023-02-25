@@ -1,27 +1,30 @@
-import { PrefectureEntity } from "@/types/state/prefectures";
+import { Prefecture, PrefectureEntity } from "@/types/state/prefectures";
 import axios from "axios";
 import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import { Checkbox } from "../shared/Checkbox";
 import { selectPrefectures } from "../../selectors/prefectures";
 import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store";
+import { setInitPrefectures } from "@/reducers/prefecturesSlice";
 
 export const PrefSelectionForm: FC<{}> = () => {
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
 
   const [prefectures, setPrefectures] = useState([] as PrefectureEntity[]);
 
-  const mockPrefectures: PrefectureEntity[] = useSelector(selectPrefectures);
+  // const mockPrefectures: PrefectureEntity[] = useSelector(selectPrefectures);
+  const dispatch: AppDispatch = useDispatch();
 
-  // const prefectures: PrefectureEntity[] = [
-  //   {
-  //     prefCode: 1,
-  //     prefName: "北海道",
-  //   },
-  //   {
-  //     prefCode: 2,
-  //     prefName: "青森",
-  //   },
-  // ];
+  const mockPrefectures: Prefecture[] = [
+    {
+      prefCode: 1,
+      prefName: "北海道",
+    },
+    {
+      prefCode: 2,
+      prefName: "青森",
+    },
+  ];
 
   useEffect(() => {
     const fetchPrefectures = async () => {
@@ -38,6 +41,7 @@ export const PrefSelectionForm: FC<{}> = () => {
     fetchPrefectures().then((prefectures) =>
       setPrefectures(prefectures as PrefectureEntity[])
     );
+    dispatch(setInitPrefectures(mockPrefectures));
   }, []);
 
   // FIXME: useCallbackで囲むとstate更新がうまくいかない
