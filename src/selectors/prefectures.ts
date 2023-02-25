@@ -17,7 +17,7 @@ const selectPrefectureById = createSelector(
   (prefectures) => prefectures.byId
 );
 
-const selectPrefectures = createSelector(
+export const selectPrefectures = createSelector(
   [selectPrefectureIds, selectPrefectureById],
   (prefectureIds, prefectures) => prefectureIds.map((id) => prefectures[id])
 );

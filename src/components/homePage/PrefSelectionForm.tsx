@@ -2,11 +2,16 @@ import { PrefectureEntity } from "@/types/state/prefectures";
 import axios from "axios";
 import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import { Checkbox } from "../shared/Checkbox";
+import { selectPrefectures } from "../../selectors/prefectures";
+import { useDispatch, useSelector } from "react-redux";
 
 export const PrefSelectionForm: FC<{}> = () => {
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
 
   const [prefectures, setPrefectures] = useState([] as PrefectureEntity[]);
+
+  const mockPrefectures: PrefectureEntity[] = useSelector(selectPrefectures);
+
   // const prefectures: PrefectureEntity[] = [
   //   {
   //     prefCode: 1,
