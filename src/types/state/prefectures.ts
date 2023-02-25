@@ -1,4 +1,4 @@
-export type Prefecture = {
+export type PrefectureEntity = {
   prefCode: number;
   prefName: string;
 };
