@@ -6,7 +6,7 @@ import {
 } from "@/types/state/populationHistories";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { original } from "immer";
+// import { original } from "immer";
 
 type populationResultData = {
   label: string;
@@ -41,7 +41,17 @@ const initialState: Entities<PopulationHistoryEntity> = {
 const prefecturesSlice = createSlice({
   name: "populations",
   initialState,
-  reducers: {},
+  reducers: {
+    removePolulationHistory(state, action) {
+      const prefCode = action.payload;
+      const newById = Object.assign({}, state.byId);
+      delete newById[prefCode];
+      return {
+        byId: newById,
+        allIds: state.allIds.filter((id) => id !== prefCode),
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getPopulationHistory.fulfilled, (state, action) => {
       const populationHistory = action.payload;
@@ -61,4 +71,5 @@ const prefecturesSlice = createSlice({
   },
 });
 
+export const { removePolulationHistory } = prefecturesSlice.actions;
 export default prefecturesSlice.reducer;
