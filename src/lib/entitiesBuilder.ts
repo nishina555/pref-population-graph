@@ -32,7 +32,11 @@ export const convertResponseToEntities = <T>(
 ): (T & { id: number })[] => {
   return response.map((data, index) => convertDataToEntity(data, index + 1));
 };
-const convertDataToEntity = <T>(data: T, index: number): T & { id: number } => {
+
+export const convertDataToEntity = <T>(
+  data: T,
+  index: number
+): T & { id: number } => {
   return { ...data, id: index };
 };
 // 上記のメソッドの汎用化をなくすと例えば以下のようになる。

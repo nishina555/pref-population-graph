@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import prefecturesReducer from "../reducers/prefecturesSlice";
-import populationsReducer from "../reducers/populationsSlice";
+import populationHistoriesReducer from "../reducers/populationHistoriesSlice";
 
 const store = configureStore({
   reducer: {
     entities: combineReducers({
       prefectures: prefecturesReducer,
-      populations: populationsReducer,
+      populationHistories: populationHistoriesReducer,
     }),
   },
 });

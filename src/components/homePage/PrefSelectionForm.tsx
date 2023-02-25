@@ -5,6 +5,7 @@ import { selectPrefectures } from "../../selectors/prefectures";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
 import { getPrefectures } from "@/reducers/prefecturesSlice";
+import { getPopulationHistory } from "@/reducers/populationHistoriesSlice";
 
 export const PrefSelectionForm: FC<{}> = () => {
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
@@ -21,6 +22,7 @@ export const PrefSelectionForm: FC<{}> = () => {
     let code = Number(e.target.value);
     if (e.target.checked === true) {
       setCheckedPrefCodes([...checkedPrefCodes, code]);
+      dispatch(getPopulationHistory(code));
     } else {
       setCheckedPrefCodes(checkedPrefCodes.filter((id) => id !== code));
     }

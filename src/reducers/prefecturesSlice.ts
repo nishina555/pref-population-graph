@@ -7,7 +7,7 @@ import { Prefecture, PrefectureEntity } from "@/types/state/prefectures";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getPrefectures = createAsyncThunk<PrefectureEntity[]>(
+export const getPrefectures = createAsyncThunk<Prefecture[]>(
   "getPrefectures",
   async () => {
     const response = await axios
@@ -33,9 +33,7 @@ const prefecturesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getPrefectures.fulfilled, (state, action) => {
-      const prefectureEntities = convertResponseToEntities(
-        action.payload as Prefecture[]
-      );
+      const prefectureEntities = convertResponseToEntities(action.payload);
       const { allIds, byId } =
         buildEntities<PrefectureEntity>(prefectureEntities);
       state.allIds = allIds;
