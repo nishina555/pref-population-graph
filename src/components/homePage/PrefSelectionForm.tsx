@@ -9,8 +9,14 @@ import {
   getPopulationHistory,
   removePolulationHistory,
 } from "@/reducers/populationHistoriesSlice";
+// import { selectPopulationHistoryIds } from "@/selectors/populationHistories";
 
 export const PrefSelectionForm: FC<{}> = () => {
+  // ToDo:
+  // チェックボックスの有無を判定するためのlocal stateを定義しているが、
+  // 取得した人口情報一覧からでもチェックボックスの有無を判定できる。ただし、データ取得の時間だけ遅延が発生する。
+  // チェックボックスの有無はlocal stateで別で管理するか、selectorを利用するか要検討。
+  // const checkedPrefCodes = useSelector(selectPopulationHistoryIds)
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
 
   const prefectures: PrefectureEntity[] = useSelector(selectPrefectures);
