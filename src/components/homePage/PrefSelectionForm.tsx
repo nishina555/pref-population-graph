@@ -1,48 +1,20 @@
-import { Prefecture, PrefectureEntity } from "@/types/state/prefectures";
-import axios from "axios";
+import { PrefectureEntity } from "@/types/state/prefectures";
 import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import { Checkbox } from "../shared/Checkbox";
 import { selectPrefectures } from "../../selectors/prefectures";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
-import { setInitPrefectures } from "@/reducers/prefecturesSlice";
+import { getPrefectures } from "@/reducers/prefecturesSlice";
 
 export const PrefSelectionForm: FC<{}> = () => {
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
 
-  const [prefectures, setPrefectures] = useState([] as PrefectureEntity[]);
-
-  // const mockPrefectures: PrefectureEntity[] = useSelector(selectPrefectures);
+  const prefectures: PrefectureEntity[] = useSelector(selectPrefectures);
   const dispatch: AppDispatch = useDispatch();
 
-  const mockPrefectures: Prefecture[] = [
-    {
-      prefCode: 1,
-      prefName: "北海道",
-    },
-    {
-      prefCode: 2,
-      prefName: "青森",
-    },
-  ];
-
   useEffect(() => {
-    const fetchPrefectures = async () => {
-      const response = await axios
-        .get(`${process.env.NEXT_PUBLIC_HOST}/api/v1/prefectures`, {
-          headers: { "X-API-KEY": `${process.env.NEXT_PUBLIC_API_KEY}` },
-        })
-        .catch((error) => {
-          throw new Error(error.message);
-        });
-      const prefectures = response.data.result;
-      return prefectures;
-    };
-    fetchPrefectures().then((prefectures) =>
-      setPrefectures(prefectures as PrefectureEntity[])
-    );
-    dispatch(setInitPrefectures(mockPrefectures));
-  }, []);
+    dispatch(getPrefectures());
+  }, [dispatch]);
 
   // FIXME: useCallbackで囲むとstate更新がうまくいかない
   const handleClick = (e: ChangeEvent<HTMLInputElement>) => {

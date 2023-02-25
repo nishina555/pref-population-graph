@@ -36,10 +36,10 @@ const convertDataToEntity = <T>(data: T, index: number): T & { id: number } => {
   return { ...data, id: index };
 };
 // 上記のメソッドの汎用化をなくすと例えば以下のようになる。
-const convertPrefResponseToPrefEntities = (
-  response: Prefecture[]
-): PrefectureEntity[] => {
-  return response.map((prefecture, index) => {
-    return { ...prefecture, id: index + 1 };
-  });
-};
+// const convertPrefResponseToPrefEntities = (
+//   response: Prefecture[]
+// ): PrefectureEntity[] => {
+//   return response.map((prefecture, index) => {
+//     return { ...prefecture, id: index + 1 };
+//   });
+// };
