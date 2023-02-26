@@ -1,7 +1,9 @@
-export type PrefectureEntity = {
+export type SelectedPrefecture = Prefecture & {
+  selected: boolean;
+};
+
+export type PrefectureEntity = Prefecture & {
   id: number;
-  prefCode: number;
-  prefName: string;
 };
 
 export type Prefecture = {
