@@ -7,6 +7,7 @@ const Home: NextPage = () => {
   return (
     <div css={main}>
       <h1 css={title}>Title</h1>
+      <div>{process.env.NEXT_PUBLIC_HOSTNAME}</div>
       <PrefSelectionFormContainer />
       <PopulationViewContainer />
     </div>
