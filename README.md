@@ -2,6 +2,9 @@
 
 <kbd><img width="500" alt="スクリーンショット 2021-02-14 14 13 12" src="https://user-images.githubusercontent.com/3121046/221408000-bcbaeaf0-4b27-46da-854e-f7d72b047046.png"></kbd>
 
+## 技術スタックについて
+個人ブログの[ゆめみのフロントコーディング試験のデモアプリをReactで実装しました](https://nishinatoshiharu.com/create-yumemi-front-demoapp/)で紹介しています。
+
 ## 起動方法
 
 ```bash
