@@ -1,11 +1,16 @@
+import { PlotDatum } from "@/types/state/populationHistories";
 import { FC } from "react";
 import { PopulationGraph } from "./PopulationGraph";
 
-export const PopulationView: FC<{}> = () => {
+type Props = {
+  plotData: PlotDatum[];
+};
+
+export const PopulationView: FC<Props> = ({ plotData }) => {
   return (
     <>
       <div>結果</div>
-      <PopulationGraph />
+      <PopulationGraph plotData={plotData} />
     </>
   );
 };

@@ -9,3 +9,8 @@ export type Population = {
   year: number;
   value: number;
 };
+
+export type PlotDatum = {
+  name: string;
+  data: number[][];
+};
