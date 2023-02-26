@@ -17,17 +17,20 @@ export const Checkbox: FC<Props> = ({ code, label, checked, onChange }) => {
         name={label}
         checked={checked}
         onChange={(e) => onChange(e)}
+        id={label}
       />
-      <label css={box__label}>{label}</label>
+      <label htmlFor={label} css={box__label}>
+        {label}
+      </label>
     </div>
   );
 };
 
 const box = css({
-  // background: 'red',
   padding: "5px 5px",
 });
 
 const box__label = css({
   marginLeft: "3px",
+  cursor: "pointer",
 });

@@ -33,7 +33,6 @@ export const PrefSelectionForm: FC<Props> = ({
 };
 
 const form = css({
-  // background: 'red',
   padding: "10px 10px",
 });
 
