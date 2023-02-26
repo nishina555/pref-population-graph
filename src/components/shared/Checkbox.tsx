@@ -1,4 +1,5 @@
 import { ChangeEvent, FC } from "react";
+import { css } from "@emotion/react";
 
 type Props = {
   code: number;
@@ -9,7 +10,7 @@ type Props = {
 
 export const Checkbox: FC<Props> = ({ code, label, checked, onChange }) => {
   return (
-    <div>
+    <div css={box}>
       <input
         type="checkbox"
         value={code}
@@ -17,7 +18,16 @@ export const Checkbox: FC<Props> = ({ code, label, checked, onChange }) => {
         checked={checked}
         onChange={(e) => onChange(e)}
       />
-      <label>{label}</label>
+      <label css={box__label}>{label}</label>
     </div>
   );
 };
+
+const box = css({
+  // background: 'red',
+  padding: "5px 5px",
+});
+
+const box__label = css({
+  marginLeft: "3px",
+});

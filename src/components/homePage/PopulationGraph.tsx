@@ -10,9 +10,14 @@ type Props = {
 export const PopulationGraph: FC<Props> = ({ plotData }) => {
   const options = {
     title: {
-      text: "都道府県",
+      text: "",
     },
     series: plotData,
+    yAxis: {
+      title: {
+        text: "人口数",
+      },
+    },
     xAxis: {
       min: 1960,
       max: 2045,
@@ -28,10 +33,5 @@ export const PopulationGraph: FC<Props> = ({ plotData }) => {
     },
   };
 
-  return (
-    <>
-      <div>グラフ</div>
-      <HighchartsReact highcharts={Highcharts} options={options} />
-    </>
-  );
+  return <HighchartsReact highcharts={Highcharts} options={options} />;
 };

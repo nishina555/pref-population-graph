@@ -7,10 +7,5 @@ type Props = {
 };
 
 export const PopulationView: FC<Props> = ({ plotData }) => {
-  return (
-    <>
-      <div>結果</div>
-      <PopulationGraph plotData={plotData} />
-    </>
-  );
+  return <PopulationGraph plotData={plotData} />;
 };
