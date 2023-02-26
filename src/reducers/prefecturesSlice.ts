@@ -5,18 +5,12 @@ import {
 import { Entities } from "@/types/state/base";
 import { Prefecture, PrefectureEntity } from "@/types/state/prefectures";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import prefectureApiService from "../../api/prefectures";
 
 export const getPrefectures = createAsyncThunk<Prefecture[]>(
   "getPrefectures",
   async () => {
-    const response = await axios
-      .get(`${process.env.NEXT_PUBLIC_HOST}/api/v1/prefectures`, {
-        headers: { "X-API-KEY": `${process.env.NEXT_PUBLIC_API_KEY}` },
-      })
-      .catch((error) => {
-        throw new Error(error.message);
-      });
+    const response = await prefectureApiService.getAll();
     const prefectures = response.data.result;
     return prefectures;
   }

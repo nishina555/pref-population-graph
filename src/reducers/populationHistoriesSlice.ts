@@ -5,7 +5,7 @@ import {
   PopulationHistoryEntity,
 } from "@/types/state/populationHistories";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import populationApiService from "../../api/populations";
 
 type populationResultData = {
   label: string;
@@ -15,16 +15,7 @@ type populationResultData = {
 export const getPopulationHistory = createAsyncThunk<PopulationHistory, number>(
   "getPopulationHistory",
   async (prefCode) => {
-    const response = await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_HOST}/api/v1/population/sum/estimate?prefCode=${prefCode}&cityCode=-`,
-        {
-          headers: { "X-API-KEY": `${process.env.NEXT_PUBLIC_API_KEY}` },
-        }
-      )
-      .catch((error) => {
-        throw new Error(error.message);
-      });
+    const response = await populationApiService.getOne(prefCode);
     const populationHistory = response.data.result["data"].filter(
       (obj: populationResultData) => obj["label"] === "総人口"
     )[0]["data"];
