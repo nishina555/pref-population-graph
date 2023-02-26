@@ -6,7 +6,6 @@ import {
 } from "@/types/state/populationHistories";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { original } from "immer";
 
 type populationResultData = {
   label: string;
