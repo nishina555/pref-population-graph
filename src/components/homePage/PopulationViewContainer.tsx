@@ -1,3 +1,4 @@
+// import { buildPlotData } from "@/lib/dataBuilder";
 import { selectPopulations } from "@/selectors/populationHistories";
 import { selectPrefectures } from "@/selectors/prefectures";
 import {
@@ -25,6 +26,8 @@ export const PopulationViewContainer: FC = () => {
     return { name: prefecture[0]["prefName"], data };
   });
 
+  // const plotData: PlotDatum[] = buildPlotData(populations, prefectures)
+
   const options: Highcharts.Options = {
     title: {
       text: "",
@@ -46,6 +49,9 @@ export const PopulationViewContainer: FC = () => {
         },
         pointStart: 1960,
       },
+    },
+    accessibility: {
+      enabled: false,
     },
   };
 
