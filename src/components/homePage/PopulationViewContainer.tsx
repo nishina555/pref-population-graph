@@ -14,20 +14,7 @@ import { useSelector } from "react-redux";
 export const PopulationViewContainer: FC = () => {
   const populations: PopulationHistoryEntity[] = useSelector(selectPopulations);
   const prefectures: PrefectureEntity[] = useSelector(selectPrefectures);
-
-  // const plotData: PlotDatum[] = populations.map((poplation) => {
-  //   const prefecture = prefectures.filter(
-  //     (prefecture) => prefecture.id === poplation.id
-  //   );
-  //   const data = poplation["records"].map((record) => [
-  //     record["year"],
-  //     record["value"],
-  //   ]);
-  //   return { name: prefecture[0]["prefName"], data };
-  // });
-
   const plotData: PlotDatum[] = buildPlotData(populations, prefectures);
-
   const options: Highcharts.Options = {
     title: {
       text: "",
