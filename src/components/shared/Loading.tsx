@@ -10,7 +10,8 @@ export const Loading: FC = () => {
 };
 
 const container = css({
-  marginTop: "1rem",
+  paddingTop: "1rem",
+  textAlign: "center",
 });
 
 const icon = css({
