@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import requestReducer from "../reducers/requestsSlice";
 import prefecturesReducer from "../reducers/prefecturesSlice";
 import populationHistoriesReducer from "../reducers/populationHistoriesSlice";
 
@@ -8,6 +9,7 @@ const store = configureStore({
       prefectures: prefecturesReducer,
       populationHistories: populationHistoriesReducer,
     }),
+    requests: requestReducer,
   },
 });
 
