@@ -6,7 +6,7 @@ import { PopulationViewContainer } from "@/components/homePage/PopulationViewCon
 const Home: NextPage = () => {
   return (
     <div css={main}>
-      <h1 css={title}>Title</h1>
+      <h1 css={title}>人口推移グラフ</h1>
       <PrefSelectionFormContainer />
       <PopulationViewContainer />
     </div>

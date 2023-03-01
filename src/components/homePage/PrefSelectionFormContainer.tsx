@@ -9,6 +9,7 @@ import {
   removePolulationHistory,
 } from "@/reducers/populationHistoriesSlice";
 import { PrefSelectionForm } from "./PrefSelectionForm";
+import { selectHasRequestDone } from "@/selectors/requests";
 
 export const PrefSelectionFormContainer: FC = () => {
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
@@ -33,11 +34,15 @@ export const PrefSelectionFormContainer: FC = () => {
     [checkedPrefCodes]
   );
 
+  const hasRequestDone = useSelector(
+    selectHasRequestDone(getPrefectures.typePrefix)
+  );
   return (
     <PrefSelectionForm
       prefectures={prefectures}
       checkedPrefCodes={checkedPrefCodes}
       onChange={handleClick}
+      hasRequestDone={hasRequestDone}
     />
   );
 };
