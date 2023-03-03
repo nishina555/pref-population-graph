@@ -10,6 +10,7 @@ import {
 } from "@/reducers/populationHistoriesSlice";
 import { PrefSelectionForm } from "./PrefSelectionForm";
 import { selectHasRequestDone } from "@/selectors/requests";
+import { Loading } from "../shared/Loading";
 
 export const PrefSelectionFormContainer: FC = () => {
   const [checkedPrefCodes, setCheckedPrefCodes] = useState([] as number[]);
@@ -37,12 +38,13 @@ export const PrefSelectionFormContainer: FC = () => {
   const hasRequestDone = useSelector(
     selectHasRequestDone(getPrefectures.typePrefix)
   );
-  return (
+  return hasRequestDone ? (
     <PrefSelectionForm
       prefectures={prefectures}
       checkedPrefCodes={checkedPrefCodes}
       onChange={handleClick}
-      hasRequestDone={hasRequestDone}
     />
+  ) : (
+    <Loading />
   );
 };
