@@ -7,7 +7,7 @@ const selectPopulationHistoryEntities = (
   state: AppState
 ): Entities<PopulationHistoryEntity> => state.entities.populationHistories;
 
-export const selectPopulationHistoryIds = createSelector(
+const selectPopulationHistoryIds = createSelector(
   [selectPopulationHistoryEntities],
   (populationHistories) => populationHistories.allIds
 );
