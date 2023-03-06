@@ -1,13 +1,15 @@
 import { AppState } from "@/store";
 import { PrefectureEntity } from "@/types/state/prefectures";
 import { selectPrefecture, selectPrefectures } from "../prefectures";
-// import { rootStateMock } from "src/__tests__/rootStateMock"
+import { rootStateMock } from "src/__tests__/rootStateMock";
 // import { rootStateMock } from "@/__tests__/rootStateMock"
 
 describe("selectPrefecture", () => {
   it("PrefectureEntityが取得できること", () => {
     const rootState: AppState = {
+      ...rootStateMock,
       entities: {
+        ...rootStateMock.entities,
         prefectures: {
           allIds: [1],
           byId: {
@@ -18,22 +20,7 @@ describe("selectPrefecture", () => {
             },
           },
         },
-        populationHistories: {
-          allIds: [1],
-          byId: {
-            1: {
-              id: 1,
-              records: [
-                {
-                  year: 1900,
-                  value: 1000,
-                },
-              ],
-            },
-          },
-        },
       },
-      requests: {},
     };
     const expectedPrefectureEntity: PrefectureEntity = {
       id: 1,
@@ -48,7 +35,9 @@ describe("selectPrefecture", () => {
 describe("selectPrefectures", () => {
   it("PrefectureEntity[]が取得できること", () => {
     const rootState: AppState = {
+      ...rootStateMock,
       entities: {
+        ...rootStateMock.entities,
         prefectures: {
           allIds: [1],
           byId: {
@@ -59,22 +48,7 @@ describe("selectPrefectures", () => {
             },
           },
         },
-        populationHistories: {
-          allIds: [1],
-          byId: {
-            1: {
-              id: 1,
-              records: [
-                {
-                  year: 1900,
-                  value: 1000,
-                },
-              ],
-            },
-          },
-        },
       },
-      requests: {},
     };
     const expectedPrefectureEntities: PrefectureEntity[] = [
       {
