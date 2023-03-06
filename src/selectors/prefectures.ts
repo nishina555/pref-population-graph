@@ -22,8 +22,7 @@ export const selectPrefectures = createSelector(
   (prefectureIds, prefectures) => prefectureIds.map((id) => prefectures[id])
 );
 
-export const selectPrefecture = (prefCode: number) =>
-  createSelector(
-    [selectPrefectureById],
-    (prefectures) => prefectures[prefCode]
-  );
+export const selectPrefecture = createSelector(
+  [selectPrefectureById, (state: AppState, prefCode) => prefCode],
+  (prefectures, prefCode) => prefectures[prefCode]
+);
