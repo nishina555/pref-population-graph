@@ -1,8 +1,7 @@
 import { AppState } from "@/store";
 import { PrefectureEntity } from "@/types/state/prefectures";
 import { selectPrefecture, selectPrefectures } from "../prefectures";
-import { rootStateMock } from "src/__tests__/rootStateMock";
-// import { rootStateMock } from "@/__tests__/rootStateMock"
+import { rootStateMock } from "@/__tests__/rootStateMock";
 
 describe("selectPrefecture", () => {
   it("PrefectureEntityが取得できること", () => {
