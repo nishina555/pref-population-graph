@@ -1,7 +1,7 @@
 import { AppState } from "@/store";
 import { PopulationHistoryEntity } from "@/types/state/populationHistories";
-import { selectPopulations } from "../populationHistories";
-import { rootStateMock } from "@/__tests__/rootStateMock";
+import { selectPopulations } from "./populationHistories";
+import { rootStateMock } from "@/tests/rootStateMock";
 
 describe("selectPopulations", () => {
   it("PopulationHistoryEntity[]が取得できること", () => {
