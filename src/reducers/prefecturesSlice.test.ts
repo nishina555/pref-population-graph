@@ -1,3 +1,4 @@
+// import { AppState } from "@/store";
 import { Entities } from "@/types/state/base";
 import { PrefectureEntity } from "@/types/state/prefectures";
 import reducer, { getPrefectures } from "./prefecturesSlice";
