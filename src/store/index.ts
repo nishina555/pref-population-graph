@@ -1,20 +1,31 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import {
+  combineReducers,
+  configureStore,
+  PreloadedState,
+} from "@reduxjs/toolkit";
 import requestReducer from "../reducers/requestsSlice";
 import prefecturesReducer from "../reducers/prefecturesSlice";
 import populationHistoriesReducer from "../reducers/populationHistoriesSlice";
 
-const store = configureStore({
-  reducer: {
-    entities: combineReducers({
-      prefectures: prefecturesReducer,
-      populationHistories: populationHistoriesReducer,
-    }),
-    requests: requestReducer,
-  },
+const entitiesReducer = combineReducers({
+  prefectures: prefecturesReducer,
+  populationHistories: populationHistoriesReducer,
 });
 
-export default store;
+const rootReducer = combineReducers({
+  entities: entitiesReducer,
+  requests: requestReducer,
+});
 
-export type AppState = ReturnType<typeof store.getState>;
+export const setupStore = (preloadedState?: PreloadedState<AppState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+};
+
+export const store = setupStore();
+
+export type AppState = ReturnType<typeof rootReducer>;
 
 export type AppDispatch = typeof store.dispatch;
