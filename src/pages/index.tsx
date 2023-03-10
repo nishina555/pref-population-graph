@@ -16,6 +16,8 @@ const Home: NextPage = () => {
 const main = css({
   maxWidth: "1000px",
   margin: "0 auto",
+  height: "100%",
+  border: "1px solid",
 });
 
 const title = css({
